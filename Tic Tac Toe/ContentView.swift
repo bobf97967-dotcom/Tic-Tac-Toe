@@ -16,20 +16,25 @@ struct ContentView: View {
                 ForEach(0..<9) { index in
                     ZStack{
                         Color .blue
+                        Color.white
+                            .opacity(moves [index] == ""
+                                     ? 1: 0)
+                        
                         Text(moves[index])
                             .font(.system(size: 90))
                             .fontWeight (.heavy)
                     }
-                        .frame (width: 120, height: 120, alignment: .center)
-                        .cornerRadius (30)
-                        .onTapGesture {
-                            withAnimation {
-                                if moves [index] == "" {
-                                    moves [index] = xTurn ? "X" : "O"
-                                    xTurn.toggle()
-                                }
+                    .frame (width: 120, height: 120, alignment: .center)
+                    .cornerRadius (30)
+                    .onTapGesture {
+                        withAnimation {
+                            if moves [index] == "" {
+                                moves [index] = xTurn ? "X" : "O"
+                                xTurn.toggle()
                             }
+                        }
                     }
+                    .rotation3DEffect(.degrees(moves[index] == "" ? 180 : 0), axis: (0, 1, 0))
                 }
             }
         }
