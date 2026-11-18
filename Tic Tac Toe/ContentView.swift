@@ -6,15 +6,21 @@
 //
 import SwiftUI
 struct ContentView: View {
+    @State private var moves = Array(repeating: "", count: 9)
     var body: some View {
         VStack {
             Text("Tic Tac Toe")
                 .font (.title).bold()
             LazyVGrid(columns: Array(repeating: GridItem(.fixed(120)), count: 3)) {
-                ForEach(0..<9, id: \.self) { index in
-                    RoundedRectangle(cornerRadius: 30)
-                        .fill(Color.blue)
-                        .frame(width: 120, height: 120)
+                ForEach(0..<9) { index in
+                    ZStack{
+                        Color .blue
+                        Text("X")
+                            .font(.system(size: 90))
+                            .fontWeight (.heavy)
+                    }
+                        .frame (width: 120, height: 120, alignment: .center)
+                        .cornerRadius (30)
                 }
             }
         }
