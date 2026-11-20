@@ -47,7 +47,13 @@ struct ContentView: View {
             checkForWinner () }
         
         .alert(isPresented: $gameOver) {
-            Alert(title: Text(winMessage))
+            Alert(title: Text(winMessage), dismissButton: .destructive(Text("Play Again"),
+                action: {
+                withAnimation {
+                moves = Array(repeating: "", count: 9)
+                gameOver = false
+                }
+            }))
         }
         
         
